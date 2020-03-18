@@ -1,26 +1,14 @@
 package com.demo.alpha.domen;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 
-
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Item {
 
+    @XmlAttribute(name = "id")
     private int id;
+    @XmlAttribute(name = "color")
     private String color;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
 }
