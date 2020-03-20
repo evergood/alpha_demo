@@ -1,6 +1,6 @@
 package com.demo.alpha.util;
 
-import com.demo.alpha.domen.Box;
+import com.demo.alpha.domen.Storage;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.xml.bind.JAXBContext;
@@ -14,13 +14,13 @@ public class Parser {
     private static String fileName;
 
 
-    public static void parseBox() throws JAXBException {
+    public static void parseStorage() throws JAXBException {
         File file = new File(fileName);
 
-        JAXBContext jaxbContext = JAXBContext.newInstance(Box.class);
-
+        JAXBContext jaxbContext = JAXBContext.newInstance(Storage.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        Box box = (Box) jaxbUnmarshaller.unmarshal(file);
+
+        Storage storage = (Storage) jaxbUnmarshaller.unmarshal(file);
     }
 }
 
