@@ -24,7 +24,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<Item> findByBoxIsAndColor(Integer id, String color) {
+    public List<Integer> findByBoxIsAndColor(Integer id, String color) {
        return itemRepository.findByBoxIsAndColor(id,color);
     }
 }
