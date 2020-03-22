@@ -7,8 +7,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -30,12 +33,17 @@ public class Box {
     @XmlElement(name = "Item")
     private List<Item> items;
 
+    @OneToMany(mappedBy = "parentBox", cascade = CascadeType.ALL)
+    @XmlElement(name = "Box")
+    private List<Box> boxes;
 
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CONTAINED_IN", insertable = false, updatable = false)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "CONTAINED_IN")
     private Box parentBox;
 
-    @OneToMany(mappedBy = "parentBox")
-    @XmlElement(name = "Box")
-    private List<Box> boxes;*/
+    public void afterUnmarshal(Unmarshaller u, Object parent) {
+        if (parent instanceof Box) {
+            this.parentBox = (Box) parent;
+        }
+    }
 }

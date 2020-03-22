@@ -31,7 +31,7 @@ public class Item {
     private String color;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "CONTAINED")
+    @JoinColumn(name = "CONTAINED_IN")
     private Box box;
 
     public void afterUnmarshal(Unmarshaller u, Object parent) {
