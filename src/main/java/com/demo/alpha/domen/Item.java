@@ -24,7 +24,7 @@ public class Item {
     @Id
     @Column(name = "ID")
     @XmlAttribute(name = "id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "COLOR")
     @XmlAttribute(name = "color")

@@ -6,7 +6,7 @@ import com.demo.alpha.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
+import java.util.List;
 
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -24,7 +24,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Item save(Item item) {
-        return itemRepository.save(item);
+    public List<Item> findByBoxIsAndColor(Integer id, String color) {
+       return itemRepository.findByBoxIsAndColor(id,color);
     }
 }

@@ -27,7 +27,7 @@ public class Box {
     @Id
     @Column(name = "ID")
     @XmlAttribute(name = "id")
-    private Long id;
+    private Integer id;
 
     @OneToMany(mappedBy = "box", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @XmlElement(name = "Item")

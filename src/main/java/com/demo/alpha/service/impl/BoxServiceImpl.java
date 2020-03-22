@@ -20,9 +20,4 @@ public class BoxServiceImpl implements BoxService {
     public Iterable<Box> saveAll(Iterable<Box> boxes) {
         return boxRepository.saveAll(boxes);
     }
-
-    @Override
-    public Box save(Box box) {
-        return boxRepository.save(box);
-    }
 }
