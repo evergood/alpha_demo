@@ -2,7 +2,15 @@ package com.demo.alpha.domen;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -16,18 +24,19 @@ public class Item {
     @Id
     @Column(name = "ID")
     @XmlAttribute(name = "id")
-    private int id;
+    private Long id;
 
     @Column(name = "COLOR")
     @XmlAttribute(name = "color")
     private String color;
 
-    @Column(name = "CONTAINED IN")
-    private int containedIn;
-
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH, CascadeType.REFRESH},
-            fetch = FetchType.LAZY)
-    @JoinColumn(name = "CONTAINED_IN")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "CONTAINED")
     private Box box;
+
+    public void afterUnmarshal(Unmarshaller u, Object parent) {
+        if (parent instanceof Box) {
+            this.box = (Box) parent;
+        }
+    }
 }
