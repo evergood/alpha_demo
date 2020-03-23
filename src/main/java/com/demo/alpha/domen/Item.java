@@ -2,14 +2,7 @@ package com.demo.alpha.domen;
 
 import lombok.Data;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -17,6 +10,12 @@ import javax.xml.bind.annotation.XmlAttribute;
 
 @Data
 @Entity
+@SqlResultSetMapping(name = "ItemResults",
+        entities = {
+                @EntityResult(entityClass = Item.class, fields = {
+                        @FieldResult(name = "id", column = "ID"),
+                        @FieldResult(name = "color", column = "COLOR"),
+                        @FieldResult(name = "box", column = "id")})})
 @Table(name = "ITEM")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Item {

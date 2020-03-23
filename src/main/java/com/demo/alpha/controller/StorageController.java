@@ -1,5 +1,6 @@
 package com.demo.alpha.controller;
 
+import com.demo.alpha.domen.Item;
 import com.demo.alpha.service.impl.ItemServiceImpl;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -22,7 +23,9 @@ public class StorageController {
         Integer boxId = (Integer) input.get("box");
         String color = (String) input.get("color");
         JSONArray responce = new JSONArray();
-        responce.add(itemService.findByBoxIsAndColor(boxId, color));
+        for (Item item : itemService.findByBoxIsAndColor(boxId, color)) {
+            responce.add(item.getId());
+        }
         return responce;
     }
 }

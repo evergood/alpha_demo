@@ -8,5 +8,5 @@ import java.util.List;
 public interface ItemService {
     Iterable<Item> saveAll(Iterable<Item> items);
 
-    public List<Integer> findByBoxIsAndColor(Integer id,String color);
+    public List<Item> findByBoxIsAndColor(Integer id,String color);
 }
